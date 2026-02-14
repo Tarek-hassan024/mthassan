@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: rgb(2 6 23); /* slate-950 */
+  color: rgb(248 250 252); /* slate-50 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; }

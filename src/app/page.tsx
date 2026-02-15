@@ -38,7 +38,7 @@ export default function HomePage() {
           </div>
           {/* <h1 className="mt-5 text-2xl font-semibold tracking-tight leading-tight sm:text-4xl"> */}
           <h1 className="mt-5 text-2xl font-semibold tracking-tight sm:text-xl">
-            “"Hope is a good thing, may be the best of things and no good thing ever dies".”
+            “Hope is a good thing, may be the best of things and no good thing ever dies.”
           </h1>
           <p className="mt-2 text-sm text-white/60">— The Shawshank Redemption</p>
 
@@ -50,11 +50,11 @@ export default function HomePage() {
           </p> */}
 
           <p className="mt-6 text-base text-white/80 leading-relaxed">
-            <span className="font-semibold text-white">Md. Tarek Hassan</span> is pursuing his
-            Doctor of Philosophy (Ph.D.) at Queen&apos;s University Belfast, Northern Ireland, United Kingdom. He has been
-            serving as a Lecturer in the Department of ETE at RUET since 12 December 2021. He received his M.Sc. and B.Sc. (Engineering)
-            degrees in Electronics and Telecommunication Engineering (ETE) from Rajshahi University of Engineering and
-            Technology (RUET), Rajshahi, Bangladesh, in December 2024 and March 2021, respectively. His work spans Machine Learning
+            <span className="font-semibold text-white">Md Tarek Hassan</span> is pursuing his
+            Doctor of Philosophy <span className="font-semibold text-white">(Ph.D.)</span> at Queen&apos;s University Belfast, Northern Ireland, United Kingdom. He has been
+            serving as a <span className="font-semibold text-white">Lecturer</span> in the Department of ETE at RUET since 12 December 2021. He received his M.Sc. and B.Sc. (Engineering)
+            degrees in Electronics and Telecommunication Engineering <span className="font-semibold text-white">(ETE)</span> from Rajshahi University of Engineering and
+            Technology <span className="font-semibold text-white">(RUET)</span>, Rajshahi, Bangladesh, in December 2024 and March 2021, respectively. His work spans Machine Learning
             (ML), Mobile Edge Computing (MEC), Beyond 5G/6G wireless communications, Radio Resource Management, and
             millimeter-wave (mmWave) communications. He has published research papers and posters in these areas.
           </p>

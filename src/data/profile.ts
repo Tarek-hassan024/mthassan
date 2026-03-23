@@ -1,11 +1,11 @@
 export const profile = {
-  name: "Md. Tarek Hassan",
+  name: "Md Tarek Hassan",
   location: "Belfast, Northern Ireland, UK",
   email: "mhassan15@qub.ac.uk",
   // চাইলে দেখাবে (Landing-এ আমি phone ডিফল্টভাবে দেখাচ্ছি না)
   phone: "+44 (0)7349 137918",
   headline:
-    "PhD Researcher (QUB) • Lecturer (RUET) • Wireless/6G • RIS • ISAC • MEC • ML",
+    "PhD Researcher (QUB) • Lecturer - On Leave (RUET) • Wireless/6G • RIS/ISAC • Machine Learning",
   links: {
     "Personal Site": "https://sites.google.com/view/Tarek-hassan",
     LinkedIn: "https://www.linkedin.com/in/md-tarek-hassan",

@@ -11,6 +11,12 @@ export type Publication = {
 
 export const publications: Publication[] = [
   {
+    type: "Colloquium",
+    status: "Accepted",
+    year: 2026,
+    titleLine:
+      'M. T. Hassan, D. Zelenchuk, and M. A. B. Abbasi, “Near Field-Aware UE Localization in RIS-Aided Wireless Networks through ML-Regressor", 2026 IEEE International Symposium on Antennas and Propagation and INC/USNC-URSI Radio Science Meeting in Detroit, Michigan, USA.},
+  {
     type: "Conference",
     status: "Accepted",
     year: 2026,

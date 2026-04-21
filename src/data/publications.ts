@@ -15,7 +15,14 @@ export const publications: Publication[] = [
     status: "Accepted",
     year: 2026,
     titleLine:
-      'M. T. Hassan, D. Zelenchuk, and M. A. B. Abbasi, “Near Field-Aware UE Localization in RIS-Aided Wireless Networks through ML-Regressor", 2026 IEEE International Symposium on Antennas and Propagation and INC/USNC-URSI Radio Science Meeting in Detroit, Michigan, USA.',
+      'M. T. Hassan, D. Zelenchuk, M. A. B. Abbasi, and A. Ullah, “Efficient Angular Localization in RIS-Assisted mmWave Network via Learning-Based Estimations", 2026 32nd International Conference on Telecommunications (ICT) in Thessaloniki, Greece.',
+  },
+  {
+    type: "Conference",
+    status: "Accepted",
+    year: 2026,
+    titleLine:
+      'M. T. Hassan, D. Zelenchuk, and M. A. B. Abbasi, “Near Field-Aware UE Localization in RIS-Aided Wireless Networks through ML-Regressor", 2026 IEEE International Symposium on Antennas and Propagation and USNC-URSI Radio Science Meeting in Detroit, Michigan, USA.',
   },
   {
     type: "Conference",

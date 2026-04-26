@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# macOS
+.DS_Store
+
+# env files
+.env*.local
+
+# Source photos folder (copies live in public/photos/)
+/Photos/

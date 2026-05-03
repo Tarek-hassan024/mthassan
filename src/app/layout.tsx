@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export const metadata = {
   title: "Tarek Hassan",
@@ -10,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-slate-950 text-white">
+      <body className="min-h-screen bg-slate-950 text-white" suppressHydrationWarning>
         {/* Background glow */}
         <div className="pointer-events-none fixed inset-0 -z-10">
           <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-fuchsia-500/20 blur-[100px]" />
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="absolute bottom-0 right-10 h-[420px] w-[420px] rounded-full bg-indigo-500/15 blur-[110px]" />
         </div>
 
+        <ScrollProgress />
         <Navbar />
         <main className="pb-10">{children}</main>
         <Footer />

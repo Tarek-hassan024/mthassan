@@ -16,6 +16,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/Card";
 import Container from "@/components/Container";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import CalendarWidget from "@/components/CalendarWidget";
 import { cv } from "@/data/cv";
 import { education } from "@/data/education";
 import { publications } from "@/data/publications";
@@ -46,20 +48,21 @@ const serviceHighlights = [
   {
     title: "Reviewer Activities",
     items: [
-      "IEEE TCOM",
-      "IEEE TWC",
+      "IEEE Transactions on Communication",
+      "IEEE Transactions on Wireless Communication",
+      "IEEE Vehicular Technology Conference",
       "Journal of Networks and Computer Applications",
       "Journal of Computer Communications",
-      "COMS2"
+      "Springer International Conference on Computing Science, Communication and Security (COMS2)"
     ],
   },
   {
     title: "Academic Service",
     items: [
-      "PSAC/BAETE accreditation",
-      "ETE syllabus editing",
-      "ICECTE publication committee",
-      "Course advising"
+      "Member of PSAC/BAETE accreditation Committee for ETE, RUET",
+      "Editor of ETE Syllabus",
+      "Editor ICECTE publication committee",
+      "Course advisor of ETE Students"
     ],
   },
   {
@@ -74,10 +77,10 @@ const serviceHighlights = [
 ];
 
 const academicHighlights = [
-  "PhD Researcher at Queen's University Belfast",
-  "Secured First Class 1st position in both MSc (2024) and BSc (2021) Engineering at RUET",
-  "Lecturer in the Department of ETE at RUET since Dec 2021",
-  "Recipient of the ETE Association Student of the Year Award for outstanding BSc academic performance",
+  <span key="1">PhD Researcher at Queen&apos;s University Belfast</span>,
+  <span key="2">Lecturer - Dept. of Electronics and Telecommunication Engineering at Rajshahi University of Engineering and Technology (RUET)</span>,
+  <span key="3">Secured First Class <strong className="font-bold text-white">1st Position</strong> (Honors/Distinction) at Bachelors and Masters in ETE at RUET</span>,
+  <span key="4">Student of the Year 2018 awarded by ETE Association for outstanding BSc academic performance</span>,
 ];
 
 const grantsAndScholarships = [
@@ -124,7 +127,9 @@ function StatCard({ label, value }: { label: string; value: number | string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
       <div className="text-xs text-white/55">{label}</div>
-      <div className="mt-1 text-2xl font-semibold text-white">{value}</div>
+      <div className="mt-1 text-2xl font-semibold text-white">
+        {typeof value === "number" ? <AnimatedCounter end={value} /> : value}
+      </div>
     </div>
   );
 }
@@ -159,7 +164,7 @@ export default function HomePage() {
             PhD Researcher at Queen&apos;s University Belfast
           </div>
 
-          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+          <h1 className="mt-5 text-2xl font-semibold tracking-tight text-white sm:text-4xl">
             {site.name}
           </h1>
           <p className="mt-3 text-base text-white/70 sm:text-lg">
@@ -235,8 +240,17 @@ export default function HomePage() {
           </div>
 
           <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
-            <div className="text-xs text-white/55">Academic Status</div>
-            <div className="mt-1 text-sm font-semibold text-white">QUB PhD Researcher • RUET Lecturer</div>
+            <div className="mb-2 text-xs text-white/55">Academic Status</div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <div className="whitespace-nowrap text-sm font-semibold text-white">PhD Researcher</div>
+                <div className="text-xs text-white/70">Queen&apos;s University Belfast</div>
+              </div>
+              <div className="border-l border-white/10 pl-4">
+                <div className="whitespace-nowrap text-sm font-semibold text-white">Lecturer (On Leave)</div>
+                <div className="text-xs text-white/70">at RUET</div>
+              </div>
+            </div>
           </div>
 
           <div className="mt-4 flex flex-wrap gap-2">
@@ -293,8 +307,8 @@ export default function HomePage() {
 
         <Card className="mt-5 p-6">
           <ul className="space-y-3 text-sm leading-relaxed text-white/78">
-            {academicHighlights.map((item) => (
-              <li key={item} className="flex gap-3">
+            {academicHighlights.map((item, idx) => (
+              <li key={idx} className="flex gap-3">
                 <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/80" />
                 <span>{item}</span>
               </li>
@@ -553,7 +567,43 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Map, Counter, and Calendar */}
       <section className="mt-12">
+        <div className="grid gap-6 md:grid-cols-4">
+          {/* Visitor Counter */}
+          <Card className="col-span-1 flex flex-col items-center justify-center p-6 text-center">
+            <div className="text-sm font-semibold text-white/70 mb-4">Total Profile Views</div>
+            <img 
+              src="https://komarev.com/ghpvc/?username=Tarek-hassan024&label=VISITORS&color=0ea5e9&style=for-the-badge" 
+              alt="Visitor Counter" 
+              className="rounded-md"
+            />
+          </Card>
+
+          {/* Normal Calendar */}
+          <Card className="col-span-1 flex flex-col items-center justify-center p-6 text-center">
+            <div className="text-sm font-semibold text-white/70 mb-4">Today</div>
+            <CalendarWidget />
+          </Card>
+
+          {/* Location Map (Big Card) */}
+          <Card className="col-span-1 md:col-span-2 flex flex-col items-center justify-center p-6 text-center overflow-hidden">
+            <div className="text-sm font-semibold text-white/70 mb-4">Current Location</div>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2311.666986566835!2d-5.937243983993471!3d54.58359489436159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486108ea49c55555%3A0xe9f7956b9c9225!2sQueen&#39;s%20University%20Belfast!5e0!3m2!1sen!2suk!4v1714580000000!5m2!1sen!2suk" 
+              width="100%" 
+              height="200" 
+              style={{ border: 0, borderRadius: '8px' }} 
+              allowFullScreen={false} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </Card>
+        </div>
+      </section>
+
+      {/* Quick Contact Section */}
+      <section className="mt-12 mb-8">
         <Card className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="text-sm font-semibold">Quick Contact</div>

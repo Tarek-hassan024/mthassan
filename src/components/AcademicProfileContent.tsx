@@ -42,10 +42,10 @@ const collaborationAreas = [
 ];
 
 const academicHighlights = [
-  "PhD Researcher at Queen's University Belfast",
-  "Secured First Class 1st position in both MSc (2024) and BSc (2021) Engineering at RUET",
-  "Lecturer in the Department of ETE at RUET since Dec 2021",
-  "Recipient of the ETE Association Student of the Year Award for outstanding BSc academic performance",
+  <span key="1">PhD Researcher at Queen&apos;s University Belfast</span>,
+  <span key="2">Lecturer - Dept. of Electronics and Telecommunication Engineering at Rajshahi University of Engineering and Technology (RUET)</span>,
+  <span key="3">Secured First Class <strong className="font-bold text-white">1st Position</strong> (Honors/Distinction) at Bachelors and Masters in ETE at RUET</span>,
+  <span key="4">Student of the Year 2018 awarded by ETE Association for outstanding BSc academic performance</span>,
 ];
 
 const taughtCourses = [
@@ -268,8 +268,8 @@ export default function AcademicProfileContent({ badge = "Academic Portfolio" }:
         <SectionHeading icon={Award} kicker="Highlights" title="Academic Highlights" />
         <Card>
           <ul className="space-y-3 text-sm leading-relaxed text-white/78">
-            {academicHighlights.map((item) => (
-              <li key={item} className="flex gap-3">
+            {academicHighlights.map((item, idx) => (
+              <li key={idx} className="flex gap-3">
                 <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/80" />
                 <span>{item}</span>
               </li>

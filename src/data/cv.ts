@@ -47,6 +47,48 @@ export const cv = {
 
   work_experience: [
     {
+      org: "Queen's University Belfast",
+      role: "Doctoral Researcher",
+      location: "Belfast, Northern Ireland, UK",
+      period: "Feb 2025 — Present",
+      bullets: [
+        "Intelligent AI Electromagnetic Environment for Communication and Sensing within 6G",
+        "Reconfigurable Intelligence Surface (RIS)",
+        "Integrated Sensing and Communication (ISAC)"
+      ],
+      technical_skills: [
+        "6G",
+        "Reconfigurable Intelligent Surface (RIS)",
+        "Integrated Sensing and Communication (ISAC)"
+      ],
+      soft_skills: [
+        "Research",
+        "Communication",
+        "Problem Solving"
+      ],
+    },
+    {
+      org: "Queen's University Belfast",
+      role: "Graduate Teaching Assistant",
+      location: "Belfast, Northern Ireland, UK",
+      period: "Sep 2025 — Present",
+      bullets: [
+        "Lab Demonstration (M.Sc.): Software Assurance (Cyber Security), Introduction to Embedded Systems (Software Engineering)",
+        "Lab Demonstration (Undergrad): Electronics and Circuits (EEE), Fundamentals of Electric Circuits (EEE), Deep Learning (Computer Science)",
+      ],
+      technical_skills: [
+        "Software Assurance",
+        "Embedded Systems",
+        "Electric Circuits",
+        "Deep Learning"
+      ],
+      soft_skills: [
+        "University Lecturing",
+        "Assistant Teaching",
+        "Lab Demonstration"
+      ],
+    },
+    {
       org: "Rajshahi University of Engineering & Technology (RUET)",
       role: "Lecturer",
       location: "Rajshahi, Bangladesh",

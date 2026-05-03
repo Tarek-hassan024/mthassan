@@ -16,7 +16,13 @@ export const education: EducationItem[] = [
     location: "Belfast, United Kingdom",
     researchTitle:
       "Intelligent AI Electromagnetic Environment for Communication and Sensing within 6G",
-    specialization: ["6G", "RIS", "ISAC"],
+    specialization: [
+      "6G and beyond",
+      "Machine Learning",
+      "Reconfigurable Intelligent Surface (RIS)",
+      "Localization",
+      "Integrated Sensing and Communication (ISAC)",
+    ],
   },
   {
     school: "Rajshahi University of Engineering & Technology (RUET)",

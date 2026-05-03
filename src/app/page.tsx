@@ -33,35 +33,84 @@ const researchThemes = [
   "Simulation-to-Reality Validation",
 ];
 
+const collaborationAreas = [
+  "RIS-assisted localization",
+  "Beam sweeping and beam-domain fingerprinting",
+  "Near-field mmWave measurements",
+  "Simulation-to-reality validation",
+  "Learning-driven radio resource management",
+  "ISAC-aware intelligent environments",
+];
+
 const serviceHighlights = [
   {
     title: "Reviewer Activities",
-    desc: "IEEE TCOM, IEEE TWC, Journal of Networks and Computer Applications, Journal of Computer Communications, and COMS2.",
+    items: [
+      "IEEE TCOM",
+      "IEEE TWC",
+      "Journal of Networks and Computer Applications",
+      "Journal of Computer Communications",
+      "COMS2"
+    ],
   },
   {
     title: "Academic Service",
-    desc: "PSAC/BAETE accreditation, ETE syllabus editing, ICECTE publication committee, and course advising.",
+    items: [
+      "PSAC/BAETE accreditation",
+      "ETE syllabus editing",
+      "ICECTE publication committee",
+      "Course advising"
+    ],
   },
   {
     title: "Teaching & Supervision",
-    desc: "Communication-focused courses, thesis supervision, project mentoring, and lab/sessionals at RUET.",
+    items: [
+      "Communication-focused courses",
+      "Thesis supervision",
+      "Project mentoring",
+      "Lab/sessionals at RUET"
+    ],
   },
 ];
 
 const academicHighlights = [
-  "Lecturer in the Department of Electronics and Telecommunication Engineering (ETE), RUET, since 12 Dec. 2021",
-  "On leave from RUET while pursuing PhD research at Queen's University Belfast",
-  "Secured First Class 1st position in both MSc and BSc Engineering in ETE at RUET",
+  "PhD Researcher at Queen's University Belfast",
+  "Secured First Class 1st position in both MSc (2024) and BSc (2021) Engineering at RUET",
+  "Lecturer in the Department of ETE at RUET since Dec 2021",
   "Recipient of the ETE Association Student of the Year Award for outstanding BSc academic performance",
 ];
 
+const grantsAndScholarships = [
+  {
+    title: "Travel Grants",
+    items: [
+      "Telco Renata Travel Grant (CTTC, Barcelona, Spain)",
+      "International Conference on Computer and Information Technology (ICCIT) 2024, 2023, 2022",
+      "2024 IEEE International Conference on Communication, Computing and Signal Processing (IICCCS), Asansol, India",
+      "EICT 2023 at KUET, Khulna",
+    ],
+  },
+  {
+    title: "Scholarships",
+    items: [
+      "Fully Funded PhD Scholarship at Queen's University Belfast [2025-2028]",
+      "University Scholarship (UG) for Top results [2017-2020]",
+      "SSC Board Scholarship [2013-2015]",
+      "JSC Board Scholarship [2010-2013]",
+      "PSC Board Scholarship [2008-2010]",
+    ],
+  },
+];
+
 const teachingHighlights = [
-  "Telecommunication Engineering",
-  "Wireless and Mobile Communication",
-  "Digital Communication",
-  "Random Signal Processing",
-  "Communication Theory Sessional",
-  "Microwave Engineering Sessional",
+  "Digital Communication (Theory & Sessional)",
+  "Wireless & Mobile Communication (Theory & Sessional)",
+  "Telecommunication Engineering (Theory & Sessional)",
+  "Industrial & Power Electronics (Theory & Sessional)",
+  "Random Signal Processing (Theory)",
+  "Graph Theory (Theory)",
+  "Communication Theory (Sessional)",
+  "Microwave Engineering (Sessional)",
 ];
 
 const quickLinks = [
@@ -99,7 +148,7 @@ export default function HomePage() {
   const recentPublications = publications
     .slice()
     .sort((a, b) => (b.year ?? 0) - (a.year ?? 0))
-    .slice(0, 3);
+    .slice(0, 4);
 
   return (
     <Container className="pt-10">
@@ -242,10 +291,51 @@ export default function HomePage() {
         </div>
         <h2 className="mt-2 text-xl font-semibold">Academic Highlights</h2>
 
-        <div className="mt-5 grid gap-4 md:grid-cols-2">
-          {academicHighlights.map((item) => (
-            <Card key={item} className="p-5">
-              <p className="text-sm leading-relaxed text-white/78">{item}</p>
+        <Card className="mt-5 p-6">
+          <ul className="space-y-3 text-sm leading-relaxed text-white/78">
+            {academicHighlights.map((item) => (
+              <li key={item} className="flex gap-3">
+                <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/80" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </section>
+
+      <section className="mt-12">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
+              <BriefcaseBusiness size={16} />
+              Experience
+            </div>
+            <h2 className="mt-2 text-xl font-semibold">Professional Experience</h2>
+          </div>
+          <Link href="/academic-profile" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
+            Extended profile
+          </Link>
+        </div>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          {cv.work_experience.map((item) => (
+            <Card key={`${item.role}-${item.org}`} className="p-5">
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <div className="text-sm font-semibold text-white">{item.role}</div>
+                  <div className="mt-1 text-sm text-white/65">{item.org}</div>
+                  <div className="mt-1 text-xs text-white/45">{item.location}</div>
+                </div>
+                <div className="text-xs text-white/55 sm:text-right">{item.period}</div>
+              </div>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/72">
+                {item.bullets.map((bullet, idx) => (
+                  <li key={idx} className="flex gap-2">
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/50" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
             </Card>
           ))}
         </div>
@@ -293,31 +383,66 @@ export default function HomePage() {
               <Microscope size={16} />
               Research
             </div>
-            <h2 className="mt-2 text-xl font-semibold">Research Highlights</h2>
+            <h2 className="mt-2 text-xl font-semibold">Research Identity</h2>
           </div>
           <Link href="/research" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
             Full details
           </Link>
         </div>
 
-        <div className="mt-5 grid gap-4 md:grid-cols-3">
-          {[
-            {
-              title: "RIS-Assisted Localization",
-              desc: "Learning-based beam sweeping, near-field localization, and beam-domain fingerprinting.",
-            },
-            {
-              title: "6G and ISAC",
-              desc: "Intelligent electromagnetic environments for communication and sensing.",
-            },
-            {
-              title: "Simulation and Measurement",
-              desc: "Wireless system evaluation through simulation, channel modeling, and experimental validation.",
-            },
-          ].map((item) => (
-            <Card key={item.title}>
-              <div className="text-sm font-semibold">{item.title}</div>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{item.desc}</p>
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          <Card>
+            <div className="text-sm font-semibold text-white">Core Themes</div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {researchThemes.map((item) => (
+                <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Card>
+          <Card>
+            <div className="text-sm font-semibold text-white">Collaboration Focus</div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {collaborationAreas.map((item) => (
+                <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
+              <BookOpen size={16} />
+              Publications
+            </div>
+            <h2 className="mt-2 text-xl font-semibold">Recent Publication Record</h2>
+          </div>
+          <Link href="/publications" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
+            View all
+          </Link>
+        </div>
+
+        <div className="mt-5 space-y-4">
+          {recentPublications.map((publication, idx) => (
+            <Card key={`${publication.titleLine}-${idx}`} className="p-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+                  {publication.type}
+                </span>
+                <span className="rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100">
+                  {publication.status}
+                </span>
+                {publication.year ? <span className="text-xs text-white/50">{publication.year}</span> : null}
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-white/78">
+                <HighlightedName text={publication.titleLine} />
+              </p>
             </Card>
           ))}
         </div>
@@ -368,65 +493,27 @@ export default function HomePage() {
       </section>
 
       <section className="mt-12">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
-              <BookOpen size={16} />
-              Publications
-            </div>
-            <h2 className="mt-2 text-xl font-semibold">Recent Publication Record</h2>
-          </div>
-          <Link href="/publications" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
-            View all
-          </Link>
+        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
+          <Award size={16} />
+          Awards & Recognition
         </div>
+        <h2 className="mt-2 text-xl font-semibold">Grants and Scholarships</h2>
 
-        <div className="mt-5 space-y-4">
-          {recentPublications.map((publication, idx) => (
-            <Card key={`${publication.titleLine}-${idx}`} className="p-5">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
-                  {publication.type}
-                </span>
-                <span className="rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100">
-                  {publication.status}
-                </span>
-                {publication.year ? <span className="text-xs text-white/50">{publication.year}</span> : null}
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          {grantsAndScholarships.map((item) => (
+            <Card key={item.title}>
+              <div className="flex items-center gap-2 text-sm font-semibold">
+                <Award size={16} className="text-cyan-200" />
+                {item.title}
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-white/78">
-                <HighlightedName text={publication.titleLine} />
-              </p>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-12">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
-              <BriefcaseBusiness size={16} />
-              Experience
-            </div>
-            <h2 className="mt-2 text-xl font-semibold">Professional Experience</h2>
-          </div>
-          <Link href="/academic-profile" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
-            Extended profile
-          </Link>
-        </div>
-
-        <div className="mt-5 grid gap-4 lg:grid-cols-2">
-          {cv.work_experience.map((item) => (
-            <Card key={`${item.role}-${item.org}`} className="p-5">
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="text-sm font-semibold text-white">{item.role}</div>
-                  <div className="mt-1 text-sm text-white/65">{item.org}</div>
-                  <div className="mt-1 text-xs text-white/45">{item.location}</div>
-                </div>
-                <div className="text-xs text-white/55 sm:text-right">{item.period}</div>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-white/72">{item.bullets[0]}</p>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/70">
+                {item.items.map((bullet, idx) => (
+                  <li key={idx} className="flex gap-2">
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/50" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
             </Card>
           ))}
         </div>
@@ -453,7 +540,14 @@ export default function HomePage() {
                 <Award size={16} className="text-cyan-200" />
                 {item.title}
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{item.desc}</p>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/70">
+                {item.items.map((bullet, idx) => (
+                  <li key={idx} className="flex gap-2">
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/50" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
             </Card>
           ))}
         </div>

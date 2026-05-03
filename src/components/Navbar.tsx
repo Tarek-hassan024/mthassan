@@ -26,11 +26,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  // Route change হলে menu auto-close
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   // ESC চাপলে menu close
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -114,6 +109,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    onClick={() => setOpen(false)}
                     className={[
                       "rounded-2xl px-4 py-3 text-sm transition border",
                       active
@@ -128,6 +124,7 @@ export default function Navbar() {
 
               <a
                 href="/cv.pdf"
+                onClick={() => setOpen(false)}
                 className="mt-2 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-cyan-300 px-4 py-3 text-sm font-semibold text-slate-950 hover:opacity-90 transition"
               >
                 Download CV

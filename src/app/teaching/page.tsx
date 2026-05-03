@@ -1,13 +1,41 @@
 import Container from "@/components/Container";
 import Card from "@/components/Card";
 
-const coursesBySeries: { series: string; courses: string[] }[] = [
-  { series: "16 Series", courses: ["ETE 4215: Telecommunication Engineering"] },
-  { series: "17 Series", courses: ["ETE 4115: Wireless and Mobile Communication", "ETE 4215: Telecommunication Engineering"] },
-  { series: "18 Series", courses: ["ETE 3111: Random Signal Processing", "ETE 4115: Wireless and Mobile Communication", "ETE 4139: Graph Theory"] },
-  { series: "19 Series", courses: ["ETE 3111: Random Signal Processing", "ETE 3215: Digital Communication", "ETE 4115: Wireless and Mobile Communication", "ETE 4139: Graph Theory", "Sessionals: ETE 3114 & ETE 2214"] },
-  { series: "20 Series", courses: ["ETE 3111: Digital Communication"] },
-  { series: "21 Series", courses: ["ETE 2211: Power Electronics"] },
+const coursesTaught: { title: string; batches: string[]; type?: string }[] = [
+  {
+    title: "ETE 4215: Telecommunication Engineering",
+    batches: ["16 Series", "17 Series"],
+  },
+  {
+    title: "ETE 4115: Wireless and Mobile Communication",
+    batches: ["17 Series", "18 Series", "19 Series"],
+  },
+  {
+    title: "ETE 3215: Digital Communication",
+    batches: ["19 Series", "20 Series"],
+  },
+  {
+    title: "ETE 2214: Sessional Based on Communication Theory",
+    batches: ["19 Series"],
+    type: "Sessional",
+  },
+  {
+    title: "ETE 3114: Sessional Based on Microwave Engineering",
+    batches: ["19 Series"],
+    type: "Sessional",
+  },
+  {
+    title: "ETE 3111: Random Signal Processing",
+    batches: ["18 Series", "19 Series"],
+  },
+  {
+    title: "ETE 4139: Graph Theory",
+    batches: ["18 Series", "19 Series"],
+  },
+  {
+    title: "ETE 2211: Power Electronics",
+    batches: ["21 Series"],
+  },
 ];
 
 const projectSupervision = [
@@ -49,63 +77,90 @@ const thesisSupervision = [
   },
 ];
 
+const otherSupervision = [
+  "Course advising and academic mentoring for 2018-19 session students",
+  "Project guidance for IoT, embedded systems, wireless networking, and web-based academic tools",
+];
+
 export default function TeachingPage() {
   return (
     <Container className="pt-10">
       <h1 className="text-2xl font-semibold">Teaching & Supervision</h1>
       <p className="mt-2 text-sm text-white/70">
-        Courses taught and supervision records (projects + theses).
+        Courses taught and supervision records.
       </p>
 
-      <h2 className="mt-8 text-xl font-semibold">Courses Taught</h2>
-      <div className="mt-4 space-y-4">
-        {coursesBySeries.map((x) => (
-          <Card key={x.series}>
-            <div className="text-sm font-semibold">{x.series}</div>
-            <ul className="mt-3 space-y-2 text-sm text-white/75">
-              {x.courses.map((c) => (
-                <li key={c} className="flex gap-2">
-                  <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
-                  <span>{c}</span>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        ))}
-      </div>
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <section>
+          <h2 className="text-xl font-semibold">Teaching</h2>
+          <div className="mt-4 space-y-4">
+            {coursesTaught.map((course) => (
+              <Card key={course.title}>
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="text-sm font-semibold">{course.title}</div>
+                  {course.type ? (
+                    <span className="w-fit rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100">
+                      {course.type}
+                    </span>
+                  ) : null}
+                </div>
+                <div className="mt-3 text-sm text-white/70">
+                  Batch: {course.batches.join(", ")}
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
 
-      <h2 className="mt-10 text-xl font-semibold">Project Supervision</h2>
-      <div className="mt-4 space-y-4">
-        {projectSupervision.map((g) => (
-          <Card key={g.group}>
-            <div className="text-sm font-semibold">{g.group}</div>
-            <ul className="mt-3 space-y-2 text-sm text-white/75">
-              {g.items.map((it) => (
-                <li key={it} className="flex gap-2">
-                  <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
-                  <span>{it}</span>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        ))}
-      </div>
+        <section>
+          <h2 className="text-xl font-semibold">Supervision</h2>
 
-      <h2 className="mt-10 text-xl font-semibold">Thesis Supervision</h2>
-      <div className="mt-4 space-y-4">
-        {thesisSupervision.map((g) => (
-          <Card key={g.group}>
-            <div className="text-sm font-semibold">{g.group}</div>
-            <ul className="mt-3 space-y-2 text-sm text-white/75">
-              {g.items.map((it) => (
-                <li key={it} className="flex gap-2">
+          <h3 className="mt-4 text-sm font-semibold text-white/80">Thesis</h3>
+          <div className="mt-3 space-y-4">
+            {thesisSupervision.map((g) => (
+              <Card key={g.group}>
+                <div className="text-sm font-semibold">{g.group}</div>
+                <ul className="mt-3 space-y-2 text-sm text-white/75">
+                  {g.items.map((it) => (
+                    <li key={it} className="flex gap-2">
+                      <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            ))}
+          </div>
+
+          <h3 className="mt-8 text-sm font-semibold text-white/80">Projects</h3>
+          <div className="mt-3 space-y-4">
+            {projectSupervision.map((g) => (
+              <Card key={g.group}>
+                <div className="text-sm font-semibold">{g.group}</div>
+                <ul className="mt-3 space-y-2 text-sm text-white/75">
+                  {g.items.map((it) => (
+                    <li key={it} className="flex gap-2">
+                      <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            ))}
+          </div>
+
+          <h3 className="mt-8 text-sm font-semibold text-white/80">Others</h3>
+          <Card className="mt-3">
+            <ul className="space-y-2 text-sm text-white/75">
+              {otherSupervision.map((item) => (
+                <li key={item} className="flex gap-2">
                   <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
-                  <span>{it}</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
           </Card>
-        ))}
+        </section>
       </div>
     </Container>
   );

@@ -1,15 +1,79 @@
 import Container from "@/components/Container";
 import Card from "@/components/Card";
 
+const reviewerActivities = [
+  "IEEE Transactions on Communications (IEEE TCOM)",
+  "IEEE Transactions on Wireless Communications (IEEE TWC)",
+  "Journal of Networks and Computer Applications",
+  "Journal of Computer Communications",
+  "Springer International Conference on Computing Science, Communication and Security (COMS2)",
+];
+
+const administrativeWorks = [
+  "Member, Program Self-Assessment Committee (PSAC), BAETE Accreditation",
+  "Editor, Undergraduate and Postgraduate Syllabus of ETE, 2020 Version",
+  "Editor, Publication Committee, 4th International Conference on Electrical, Computer and Telecommunication Engineering (ICECTE), 2022",
+  "Course Advisor, 2018-19 session students",
+  "Official Member and Fellow of Information System Engineering",
+];
+
+const certifications = [
+  "Cisco Certified Network Associate (CCNA): Routing and Switching, Cisco Networking Academy",
+  "IBM Data Science Professional Certificate, Coursera",
+  "Python for Everybody Specialization, University of Michigan, Coursera",
+  "Machine Learning, Stanford University, Coursera",
+  "Machine Learning: Regression, University of Washington, Coursera",
+  "Machine Learning with Big Data, UC San Diego, Coursera",
+  "Advanced Machine Learning and Signal Processing, IBM, Coursera",
+  "SQL for Data Science, UC Davis, Coursera",
+  "Software Defined Networking, University of Chicago, Coursera",
+];
+
 export default function OthersPage() {
   return (
     <Container className="pt-10">
       <h1 className="text-2xl font-semibold">Others</h1>
       <p className="mt-2 text-sm text-white/70">
-        Leadership, volunteering, memberships, scholarships, and additional information.
+        Professional service, reviewing, administrative work, certifications, scholarships, and additional information.
       </p>
 
       <div className="mt-6 space-y-4">
+        <Card>
+          <div className="text-sm font-semibold">Reviewer Activities</div>
+          <ul className="mt-3 space-y-2 text-sm text-white/75">
+            {reviewerActivities.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+        <Card>
+          <div className="text-sm font-semibold">Administrative & Departmental Work</div>
+          <ul className="mt-3 space-y-2 text-sm text-white/75">
+            {administrativeWorks.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
+        <Card>
+          <div className="text-sm font-semibold">Certifications & Online Courses</div>
+          <ul className="mt-3 space-y-2 text-sm text-white/75">
+            {certifications.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+
         <Card>
           <div className="text-sm font-semibold">Leadership Experience</div>
           <ul className="mt-3 space-y-2 text-sm text-white/75">

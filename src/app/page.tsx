@@ -1,4 +1,4 @@
-import { Github, Linkedin, GraduationCap, Globe } from "lucide-react";
+import { Github, Linkedin, GraduationCap, Globe, ShieldCheck } from "lucide-react";
 import Container from "@/components/Container";
 import Card from "@/components/Card";
 import Link from "next/link";
@@ -171,6 +171,41 @@ export default function HomePage() {
             <Card key={x.title}>
               <div className="text-sm font-semibold">{x.title}</div>
               <p className="mt-2 text-sm text-white/70 leading-relaxed">{x.desc}</p>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* SERVICE */}
+      <section className="mt-12">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-xl font-semibold">Professional Service</h2>
+          <Link href="/others" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
+            More details →
+          </Link>
+        </div>
+
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              title: "Reviewer Activities",
+              desc: "IEEE TCOM, IEEE TWC, Journal of Networks and Computer Applications, Journal of Computer Communications, and COMS2.",
+            },
+            {
+              title: "Administrative Work",
+              desc: "PSAC/BAETE accreditation, ETE syllabus editing, ICECTE publication committee, and course advising.",
+            },
+            {
+              title: "Certifications",
+              desc: "CCNA, IBM Data Science, Python for Everybody, machine learning, SQL, and SDN coursework.",
+            },
+          ].map((item) => (
+            <Card key={item.title}>
+              <div className="flex items-center gap-2 text-sm font-semibold">
+                <ShieldCheck size={16} className="text-cyan-200" />
+                {item.title}
+              </div>
+              <p className="mt-2 text-sm text-white/70 leading-relaxed">{item.desc}</p>
             </Card>
           ))}
         </div>

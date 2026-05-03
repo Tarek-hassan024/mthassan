@@ -16,6 +16,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/Card";
 import Container from "@/components/Container";
+import { cv } from "@/data/cv";
+import { education } from "@/data/education";
 import { publications } from "@/data/publications";
 import { site } from "@/data/site";
 import { BASE_PATH } from "@/lib/basePath";
@@ -44,6 +46,22 @@ const serviceHighlights = [
     title: "Teaching & Supervision",
     desc: "Communication-focused courses, thesis supervision, project mentoring, and lab/sessionals at RUET.",
   },
+];
+
+const academicHighlights = [
+  "Lecturer in the Department of Electronics and Telecommunication Engineering (ETE), RUET, since 12 Dec. 2021",
+  "On leave from RUET while pursuing PhD research at Queen's University Belfast",
+  "Secured First Class 1st position in both MSc and BSc Engineering in ETE at RUET",
+  "Recipient of the ETE Association Student of the Year Award for outstanding BSc academic performance",
+];
+
+const teachingHighlights = [
+  "Telecommunication Engineering",
+  "Wireless and Mobile Communication",
+  "Digital Communication",
+  "Random Signal Processing",
+  "Communication Theory Sessional",
+  "Microwave Engineering Sessional",
 ];
 
 const quickLinks = [
@@ -168,8 +186,8 @@ export default function HomePage() {
           </div>
 
           <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
-            <div className="text-xs text-white/55">Current Focus</div>
-            <div className="mt-1 text-sm font-semibold text-white">RIS and ISAC for 6G Networks</div>
+            <div className="text-xs text-white/55">Academic Status</div>
+            <div className="mt-1 text-sm font-semibold text-white">QUB PhD Researcher • RUET Lecturer</div>
           </div>
 
           <div className="mt-4 flex flex-wrap gap-2">
@@ -218,6 +236,57 @@ export default function HomePage() {
       </section>
 
       <section className="mt-12">
+        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
+          <Award size={16} />
+          Highlights
+        </div>
+        <h2 className="mt-2 text-xl font-semibold">Academic Highlights</h2>
+
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          {academicHighlights.map((item) => (
+            <Card key={item} className="p-5">
+              <p className="text-sm leading-relaxed text-white/78">{item}</p>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
+              <BriefcaseBusiness size={16} />
+              Profile
+            </div>
+            <h2 className="mt-2 text-xl font-semibold">Academic Journey</h2>
+          </div>
+          <Link href="/education" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
+            Education
+          </Link>
+        </div>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-3">
+          {education.map((item) => (
+            <Card key={item.degree} className="p-5">
+              <div className="text-xs text-white/55">{item.dates}</div>
+              <div className="mt-2 text-sm font-semibold text-white">{item.degree}</div>
+              <div className="mt-1 text-xs leading-relaxed text-white/60">{item.school}</div>
+              {item.cgpa ? <div className="mt-3 text-xs text-white/75">CGPA: {item.cgpa}</div> : null}
+              {item.specialization ? (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {item.specialization.map((tag) => (
+                    <span key={tag} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/70">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12">
         <div className="flex items-end justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
@@ -258,6 +327,50 @@ export default function HomePage() {
         <div className="flex items-end justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
+              <Presentation size={16} />
+              Teaching
+            </div>
+            <h2 className="mt-2 text-xl font-semibold">Teaching & Supervision</h2>
+          </div>
+          <Link href="/teaching" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
+            Teaching record
+          </Link>
+        </div>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr]">
+          <Card>
+            <div className="text-sm font-semibold text-white">Communication-Focused Teaching</div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {teachingHighlights.map((item) => (
+                <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Card>
+          <Card>
+            <div className="text-sm font-semibold text-white">Supervision Themes</div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {[
+                "RIS-integrated MIMO",
+                "mmWave channel modeling",
+                "Fog computing traffic management",
+                "NS-3 MANET analysis",
+                "IoT systems",
+              ].map((item) => (
+                <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
               <BookOpen size={16} />
               Publications
             </div>
@@ -283,6 +396,37 @@ export default function HomePage() {
               <p className="mt-3 text-sm leading-relaxed text-white/78">
                 <HighlightedName text={publication.titleLine} />
               </p>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
+              <BriefcaseBusiness size={16} />
+              Experience
+            </div>
+            <h2 className="mt-2 text-xl font-semibold">Professional Experience</h2>
+          </div>
+          <Link href="/academic-profile" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
+            Extended profile
+          </Link>
+        </div>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          {cv.work_experience.map((item) => (
+            <Card key={`${item.role}-${item.org}`} className="p-5">
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <div className="text-sm font-semibold text-white">{item.role}</div>
+                  <div className="mt-1 text-sm text-white/65">{item.org}</div>
+                  <div className="mt-1 text-xs text-white/45">{item.location}</div>
+                </div>
+                <div className="text-xs text-white/55 sm:text-right">{item.period}</div>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-white/72">{item.bullets[0]}</p>
             </Card>
           ))}
         </div>

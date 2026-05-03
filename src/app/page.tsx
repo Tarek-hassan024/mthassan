@@ -4,16 +4,17 @@ import {
   BriefcaseBusiness,
   Download,
   ExternalLink,
-  Github,
   GraduationCap,
-  Linkedin,
   Mail,
   Microscope,
+  Network,
   Presentation,
+  ScrollText,
   ShieldCheck,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import type { ElementType } from "react";
 import Card from "@/components/Card";
 import Container from "@/components/Container";
 import { cv } from "@/data/cv";
@@ -23,29 +24,21 @@ import { site } from "@/data/site";
 import { BASE_PATH } from "@/lib/basePath";
 
 const researchThemes = [
-  "6G and Beyond Wireless Networks",
-  "RIS-Assisted Localization",
-  "Integrated Sensing and Communication",
-  "Machine Learning for Wireless Networks",
-  "mmWave Channel Modeling",
-  "Mobile Edge Computing",
-  "Radio Resource Management",
-  "Simulation-to-Reality Validation",
+  "6G wireless networks",
+  "Reconfigurable intelligent surfaces",
+  "Integrated sensing and communication",
+  "Machine learning for wireless systems",
+  "mmWave channel modeling",
+  "Mobile edge computing",
 ];
 
-const serviceHighlights = [
-  {
-    title: "Reviewer Activities",
-    desc: "IEEE TCOM, IEEE TWC, Journal of Networks and Computer Applications, Journal of Computer Communications, and COMS2.",
-  },
-  {
-    title: "Academic Service",
-    desc: "PSAC/BAETE accreditation, ETE syllabus editing, ICECTE publication committee, and course advising.",
-  },
-  {
-    title: "Teaching & Supervision",
-    desc: "Communication-focused courses, thesis supervision, project mentoring, and lab/sessionals at RUET.",
-  },
+const collaborationAreas = [
+  "RIS-assisted localization",
+  "Beam sweeping and beam-domain fingerprinting",
+  "Near-field mmWave measurements",
+  "Simulation-to-reality validation",
+  "Learning-driven radio resource management",
+  "ISAC-aware intelligent environments",
 ];
 
 const academicHighlights = [
@@ -55,30 +48,47 @@ const academicHighlights = [
   "Recipient of the ETE Association Student of the Year Award for outstanding BSc academic performance",
 ];
 
-const teachingHighlights = [
-  "Telecommunication Engineering",
-  "Wireless and Mobile Communication",
-  "Digital Communication",
-  "Random Signal Processing",
-  "Communication Theory Sessional",
-  "Microwave Engineering Sessional",
+const taughtCourses = [
+  "ETE 3111: Random Signal Processing",
+  "ETE 3215: Digital Communication",
+  "ETE 4115: Wireless and Mobile Communication",
+  "ETE 4139: Graph Theory",
+  "ETE 4215: Telecommunication Engineering",
+  "EEE 2253 / ETE 2211: Industrial Electronics / Power Electronics",
 ];
 
-const quickLinks = [
-  { href: "/research", label: "Research", icon: Microscope },
-  { href: "/publications", label: "Publications", icon: BookOpen },
-  { href: "/teaching", label: "Teaching", icon: Presentation },
-  { href: "/academic-profile", label: "Extended Profile", icon: BriefcaseBusiness },
+const labTeaching = [
+  "ETE 2214: Sessional Based on Communication Theory",
+  "ETE 3114: Sessional Based on Microwave Engineering",
+  "ETE 3216: Sessional Based on Digital Communication",
+  "ETE 4116: Sessional Based on Wireless and Mobile Communication",
+  "ETE 4216: Sessional Based on Telecommunication Engineering",
+  "EEE 2254 / ETE 2212: Sessional Based on Industrial Electronics / Power Electronics",
 ];
 
-function StatCard({ label, value }: { label: string; value: number | string }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-      <div className="text-xs text-white/55">{label}</div>
-      <div className="mt-1 text-2xl font-semibold text-white">{value}</div>
-    </div>
-  );
-}
+const academicService = [
+  "Member, Program Self-Assessment Committee (PSAC), BAETE Accreditation",
+  "Editor, Undergraduate and Postgraduate Syllabus of ETE, 2020 Version",
+  "Editor, Publication Committee, 4th International Conference on Electrical, Computer and Telecommunication Engineering (ICECTE), 2022",
+  "Course Advisor, 2018-19 session students",
+  "Official Member and Fellow of Information System Engineering",
+];
+
+const reviewerActivities = [
+  "IEEE Transactions on Communications (IEEE TCOM)",
+  "IEEE Transactions on Wireless Communications (IEEE TWC)",
+  "Journal of Networks and Computer Applications",
+  "Journal of Computer Communications",
+  "Springer International Conference on Computing Science, Communication and Security (COMS2)",
+];
+
+const supervisedWorks = [
+  "End-to-End learning for active and passive RIS-integrated MIMO wireless communication networks",
+  "Statistical millimeter-wave channel modeling for spatial consistency and O2I penetration loss",
+  "IoT-based weather station with real-time online monitoring",
+  "IoT-based smart health monitoring and management system",
+  "Arduino and GSM based electronic notice board and online class routine",
+];
 
 function HighlightedName({ text }: { text: string }) {
   return text.split(/(M\. T\. Hassan|Md Tarek Hassan|T\. Hassan)/g).map((part, idx) =>
@@ -92,6 +102,52 @@ function HighlightedName({ text }: { text: string }) {
   );
 }
 
+function SectionHeading({
+  icon: Icon,
+  title,
+  kicker,
+}: {
+  icon: ElementType;
+  title: string;
+  kicker?: string;
+}) {
+  return (
+    <div className="mb-5 flex items-end justify-between gap-4">
+      <div>
+        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
+          <Icon size={16} />
+          {kicker}
+        </div>
+        <h2 className="mt-2 text-xl font-semibold text-white">{title}</h2>
+      </div>
+    </div>
+  );
+}
+
+function StatCard({ label, value }: { label: string; value: number | string }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+      <div className="text-xs text-white/55">{label}</div>
+      <div className="mt-1 text-2xl font-semibold text-white">{value}</div>
+    </div>
+  );
+}
+
+function Tags({ items }: { items: string[] }) {
+  return (
+    <div className="mt-3 flex flex-wrap gap-2">
+      {items.map((item) => (
+        <span
+          key={item}
+          className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75"
+        >
+          {item}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function HomePage() {
   const published = publications.filter((p) => p.status === "Published");
   const accepted = publications.filter((p) => p.status === "Accepted");
@@ -99,42 +155,34 @@ export default function HomePage() {
   const recentPublications = publications
     .slice()
     .sort((a, b) => (b.year ?? 0) - (a.year ?? 0))
-    .slice(0, 3);
+    .slice(0, 5);
 
   return (
     <Container className="pt-10">
-      <section className="grid gap-8 lg:grid-cols-[1fr_360px]">
+      <section className="grid gap-6 lg:grid-cols-[1fr_340px]">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/75">
             <span className="h-2 w-2 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
-            PhD Researcher at Queen&apos;s University Belfast
+            Academic Portfolio
           </div>
 
-          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             {site.name}
           </h1>
-          <p className="mt-3 text-base text-white/70 sm:text-lg">
-            Lecturer, ETE, RUET (On Leave) • 6G Wireless • RIS • ISAC • Machine Learning
-          </p>
+          <p className="mt-2 text-base text-white/70">{site.role}</p>
+          <p className="mt-1 text-sm text-white/55">{site.location}</p>
 
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/80">
-            Md Tarek Hassan is pursuing his PhD in Electrical and Electronic Engineering at Queen&apos;s
-            University Belfast. His research focuses on intelligent AI electromagnetic environments for
-            communication and sensing within 6G, with emphasis on RIS-assisted localization, mmWave
-            networks, ISAC, and learning-driven wireless system design.
+            PhD researcher at Queen&apos;s University Belfast working on intelligent AI electromagnetic
+            environments for communication and sensing within 6G. His research connects RIS-assisted
+            localization, mmWave systems, ISAC, machine learning, and simulation-backed wireless network
+            design, with prior academic service as a Lecturer in ETE at RUET.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/academic-profile"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 hover:opacity-90 transition"
-            >
-              <BriefcaseBusiness size={16} />
-              View Academic Profile
-            </Link>
             <a
               href={`${BASE_PATH}/cv.pdf`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/85 hover:bg-white/10 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 hover:opacity-90 transition"
             >
               <Download size={16} />
               Download CV
@@ -144,19 +192,24 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/85 hover:bg-white/10 transition"
             >
               <Mail size={16} />
-              Contact
+              Email
             </a>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {researchThemes.map((theme) => (
-              <span
-                key={theme}
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75"
-              >
-                {theme}
-              </span>
-            ))}
+            <a
+              href={site.links.scholar}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/85 hover:bg-white/10 transition"
+            >
+              <ExternalLink size={16} />
+              Google Scholar
+            </a>
+            <Link
+              href="/publications"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/85 hover:bg-white/10 transition"
+            >
+              <ScrollText size={16} />
+              Publications
+            </Link>
           </div>
         </div>
 
@@ -165,225 +218,61 @@ export default function HomePage() {
             <Image
               src={`${BASE_PATH}/profile.jpg`}
               alt={site.name}
-              width={128}
-              height={128}
-              className="h-32 w-32 rounded-3xl border border-white/15 object-cover"
+              width={112}
+              height={112}
+              className="h-28 w-28 rounded-2xl border border-white/15 object-cover"
               priority
             />
             <div>
               <div className="text-sm font-semibold text-white">{site.name}</div>
-              <div className="mt-1 text-xs text-white/60">{site.location}</div>
+              <div className="mt-1 text-xs text-white/60">QUB PhD Researcher</div>
               <a className="mt-2 block text-xs text-white/75 underline decoration-white/20" href={`mailto:${site.email}`}>
                 {site.email}
               </a>
             </div>
           </div>
-
           <div className="mt-6 grid grid-cols-3 gap-2">
             <StatCard label="Published" value={published.length} />
             <StatCard label="Accepted" value={accepted.length} />
             <StatCard label="Submitted" value={submitted.length} />
           </div>
-
           <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
-            <div className="text-xs text-white/55">Academic Status</div>
-            <div className="mt-1 text-sm font-semibold text-white">QUB PhD Researcher • RUET Lecturer</div>
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-2">
-            <a
-              href={site.links.scholar}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/75 hover:bg-white/10 hover:text-white transition"
-            >
-              <GraduationCap size={15} />
-              Scholar
-            </a>
-            <a
-              href={site.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/75 hover:bg-white/10 hover:text-white transition"
-            >
-              <Github size={15} />
-              GitHub
-            </a>
-            <a
-              href={site.links.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/75 hover:bg-white/10 hover:text-white transition"
-            >
-              <Linkedin size={15} />
-              LinkedIn
-            </a>
+            <div className="text-xs text-white/55">RUET Status</div>
+            <div className="mt-1 text-sm font-semibold text-white">Lecturer, On Leave</div>
           </div>
         </Card>
       </section>
 
-      <section className="mt-10 grid gap-3 md:grid-cols-4">
-        {quickLinks.map(({ href, label, icon: Icon }) => (
-          <Link
-            key={href}
-            href={href}
-            className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/80 transition hover:bg-white/10 hover:text-white"
-          >
-            <Icon size={18} className="text-cyan-200" />
-            <div className="mt-3 font-semibold">{label}</div>
-          </Link>
-        ))}
-      </section>
-
-      <section className="mt-12">
-        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
-          <Award size={16} />
-          Highlights
-        </div>
-        <h2 className="mt-2 text-xl font-semibold">Academic Highlights</h2>
-
-        <div className="mt-5 grid gap-4 md:grid-cols-2">
+      <section className="mt-10">
+        <SectionHeading icon={Award} kicker="Highlights" title="Academic Highlights" />
+        <div className="grid gap-4 md:grid-cols-2">
           {academicHighlights.map((item) => (
-            <Card key={item} className="p-5">
+            <Card key={item}>
               <p className="text-sm leading-relaxed text-white/78">{item}</p>
             </Card>
           ))}
         </div>
       </section>
 
-      <section className="mt-12">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
-              <BriefcaseBusiness size={16} />
-              Profile
-            </div>
-            <h2 className="mt-2 text-xl font-semibold">Academic Journey</h2>
-          </div>
-          <Link href="/education" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
-            Education
-          </Link>
-        </div>
-
-        <div className="mt-5 grid gap-4 lg:grid-cols-3">
-          {education.map((item) => (
-            <Card key={item.degree} className="p-5">
-              <div className="text-xs text-white/55">{item.dates}</div>
-              <div className="mt-2 text-sm font-semibold text-white">{item.degree}</div>
-              <div className="mt-1 text-xs leading-relaxed text-white/60">{item.school}</div>
-              {item.cgpa ? <div className="mt-3 text-xs text-white/75">CGPA: {item.cgpa}</div> : null}
-              {item.specialization ? (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {item.specialization.map((tag) => (
-                    <span key={tag} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/70">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              ) : null}
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-12">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
-              <Microscope size={16} />
-              Research
-            </div>
-            <h2 className="mt-2 text-xl font-semibold">Research Highlights</h2>
-          </div>
-          <Link href="/research" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
-            Full details
-          </Link>
-        </div>
-
-        <div className="mt-5 grid gap-4 md:grid-cols-3">
-          {[
-            {
-              title: "RIS-Assisted Localization",
-              desc: "Learning-based beam sweeping, near-field localization, and beam-domain fingerprinting.",
-            },
-            {
-              title: "6G and ISAC",
-              desc: "Intelligent electromagnetic environments for communication and sensing.",
-            },
-            {
-              title: "Simulation and Measurement",
-              desc: "Wireless system evaluation through simulation, channel modeling, and experimental validation.",
-            },
-          ].map((item) => (
-            <Card key={item.title}>
-              <div className="text-sm font-semibold">{item.title}</div>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{item.desc}</p>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-12">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
-              <Presentation size={16} />
-              Teaching
-            </div>
-            <h2 className="mt-2 text-xl font-semibold">Teaching & Supervision</h2>
-          </div>
-          <Link href="/teaching" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
-            Teaching record
-          </Link>
-        </div>
-
-        <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr]">
+      <section className="mt-10">
+        <SectionHeading icon={Microscope} kicker="Research" title="Research Identity" />
+        <div className="grid gap-4 lg:grid-cols-2">
           <Card>
-            <div className="text-sm font-semibold text-white">Communication-Focused Teaching</div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {teachingHighlights.map((item) => (
-                <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75">
-                  {item}
-                </span>
-              ))}
-            </div>
+            <div className="text-sm font-semibold text-white">Core Themes</div>
+            <Tags items={researchThemes} />
           </Card>
           <Card>
-            <div className="text-sm font-semibold text-white">Supervision Themes</div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {[
-                "RIS-integrated MIMO",
-                "mmWave channel modeling",
-                "Fog computing traffic management",
-                "NS-3 MANET analysis",
-                "IoT systems",
-              ].map((item) => (
-                <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/75">
-                  {item}
-                </span>
-              ))}
-            </div>
+            <div className="text-sm font-semibold text-white">Collaboration Focus</div>
+            <Tags items={collaborationAreas} />
           </Card>
         </div>
       </section>
 
-      <section className="mt-12">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
-              <BookOpen size={16} />
-              Publications
-            </div>
-            <h2 className="mt-2 text-xl font-semibold">Recent Publication Record</h2>
-          </div>
-          <Link href="/publications" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
-            View all
-          </Link>
-        </div>
-
-        <div className="mt-5 space-y-4">
+      <section className="mt-10">
+        <SectionHeading icon={BookOpen} kicker="Publications" title="Recent Publication Record" />
+        <div className="space-y-4">
           {recentPublications.map((publication, idx) => (
-            <Card key={`${publication.titleLine}-${idx}`} className="p-5">
+            <Card key={`${publication.titleLine}-${idx}`}>
               <div className="flex flex-wrap items-center gap-2">
                 <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
                   {publication.type}
@@ -401,96 +290,140 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-12">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
-              <BriefcaseBusiness size={16} />
-              Experience
-            </div>
-            <h2 className="mt-2 text-xl font-semibold">Professional Experience</h2>
-          </div>
-          <Link href="/academic-profile" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
-            Extended profile
-          </Link>
+      <section className="mt-10">
+        <SectionHeading icon={Presentation} kicker="Teaching" title="Teaching Portfolio" />
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Card>
+            <div className="text-sm font-semibold text-white">Theory Courses</div>
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/72">
+              {taughtCourses.map((course) => (
+                <li key={course} className="flex gap-2">
+                  <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                  <span>{course}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+          <Card>
+            <div className="text-sm font-semibold text-white">Sessional and Laboratory Courses</div>
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/72">
+              {labTeaching.map((course) => (
+                <li key={course} className="flex gap-2">
+                  <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-fuchsia-300" />
+                  <span>{course}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
         </div>
+      </section>
 
-        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+      <section className="mt-10">
+        <SectionHeading icon={Network} kicker="Projects" title="Projects and Research Works" />
+        <div className="grid gap-4 md:grid-cols-2">
+          {cv.projects.map((project) => (
+            <Card key={project.title}>
+              <div className="text-sm text-white/55">{project.period}</div>
+              <div className="mt-1 text-lg font-semibold text-white">{project.title}</div>
+              <p className="mt-3 text-sm leading-relaxed text-white/72">{project.bullets[0]}</p>
+              <Tags items={project.tech.slice(0, 5)} />
+            </Card>
+          ))}
+        </div>
+        <Card className="mt-4">
+          <div className="text-sm font-semibold text-white">Student Projects and Supervision Themes</div>
+          <Tags items={supervisedWorks} />
+        </Card>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeading icon={BriefcaseBusiness} kicker="Experience" title="Academic and Professional Experience" />
+        <div className="space-y-4">
           {cv.work_experience.map((item) => (
-            <Card key={`${item.role}-${item.org}`} className="p-5">
+            <Card key={`${item.role}-${item.org}`}>
               <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                  <div className="text-sm font-semibold text-white">{item.role}</div>
+                  <div className="text-lg font-semibold text-white">{item.role}</div>
                   <div className="mt-1 text-sm text-white/65">{item.org}</div>
                   <div className="mt-1 text-xs text-white/45">{item.location}</div>
                 </div>
-                <div className="text-xs text-white/55 sm:text-right">{item.period}</div>
+                <div className="text-sm text-white/60 sm:text-right">{item.period}</div>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-white/72">{item.bullets[0]}</p>
+              <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/72">
+                {item.bullets.slice(0, 3).map((bullet) => (
+                  <li key={bullet} className="flex gap-2">
+                    <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
             </Card>
           ))}
         </div>
       </section>
 
-      <section className="mt-12">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cyan-200/80">
-              <ShieldCheck size={16} />
-              Service
-            </div>
-            <h2 className="mt-2 text-xl font-semibold">Professional Service</h2>
-          </div>
-          <Link href="/others" className="text-sm text-white/70 hover:text-white underline decoration-white/20">
-            More details
-          </Link>
-        </div>
-
-        <div className="mt-5 grid gap-4 md:grid-cols-3">
-          {serviceHighlights.map((item) => (
-            <Card key={item.title}>
-              <div className="flex items-center gap-2 text-sm font-semibold">
-                <Award size={16} className="text-cyan-200" />
-                {item.title}
+      <section className="mt-10">
+        <SectionHeading icon={GraduationCap} kicker="Education" title="Educational Qualifications" />
+        <div className="grid gap-4">
+          {education.map((item) => (
+            <Card key={item.degree}>
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <div className="text-lg font-semibold text-white">{item.degree}</div>
+                  <div className="mt-1 text-sm text-white/65">{item.school}</div>
+                  <div className="mt-1 text-xs text-white/45">{item.location}</div>
+                </div>
+                <div className="text-sm text-white/60 sm:text-right">{item.dates}</div>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{item.desc}</p>
+              {item.cgpa ? <div className="mt-4 text-sm text-white/80">CGPA: {item.cgpa}</div> : null}
+              {item.researchTitle ? (
+                <p className="mt-3 text-sm leading-relaxed text-white/72">{item.researchTitle}</p>
+              ) : null}
+              {item.specialization ? <Tags items={item.specialization} /> : null}
             </Card>
           ))}
         </div>
       </section>
 
-      <section className="mt-12">
-        <Card className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <div className="text-sm font-semibold">Quick Contact</div>
-            <div className="mt-1 text-sm text-white/70">
-              Email:{" "}
-              <a className="underline decoration-white/30 hover:decoration-white" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <a
-              href={site.links.pure}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/75 hover:bg-white/10 hover:text-white transition"
-            >
-              <ExternalLink size={15} />
-              QUB Pure
-            </a>
-            <a
-              href={site.links.ruet}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-white/75 hover:bg-white/10 hover:text-white transition"
-            >
-              <ExternalLink size={15} />
-              RUET Profile
-            </a>
-          </div>
-        </Card>
+      <section className="mt-10">
+        <SectionHeading icon={ShieldCheck} kicker="Service" title="Academic Service and Reviewing" />
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Card>
+            <div className="text-sm font-semibold text-white">Administrative and Departmental Service</div>
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/72">
+              {academicService.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+          <Card>
+            <div className="text-sm font-semibold text-white">Reviewer Activities</div>
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/72">
+              {reviewerActivities.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-fuchsia-300" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeading icon={Award} kicker="Recognition" title="Awards and Leadership" />
+        <div className="grid gap-4 md:grid-cols-3">
+          {cv.awards.slice(0, 3).map((award) => (
+            <Card key={award.title}>
+              <div className="text-sm text-white/55">{award.period}</div>
+              <div className="mt-1 text-lg font-semibold text-white">{award.title}</div>
+              <div className="mt-1 text-sm text-white/65">{award.org}</div>
+            </Card>
+          ))}
+        </div>
       </section>
     </Container>
   );

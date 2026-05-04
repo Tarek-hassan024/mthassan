@@ -6,7 +6,8 @@ export default function CalendarWidget() {
   const [date, setDate] = useState<Date | null>(null);
 
   useEffect(() => {
-    setDate(new Date());
+    const frame = window.requestAnimationFrame(() => setDate(new Date()));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   if (!date) return <div className="h-24 w-32 animate-pulse rounded-xl bg-white/5" />;

@@ -18,6 +18,7 @@ import Card from "@/components/Card";
 import Container from "@/components/Container";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import CalendarWidget from "@/components/CalendarWidget";
+import VisitorCounter from "@/components/VisitorCounter";
 import { cv } from "@/data/cv";
 import { education } from "@/data/education";
 import { publications } from "@/data/publications";
@@ -597,12 +598,8 @@ export default function HomePage() {
         <div className="grid gap-6 md:grid-cols-4">
           {/* Visitor Counter */}
           <Card className="col-span-1 flex flex-col items-center justify-center p-6 text-center">
-            <div className="text-sm font-semibold text-white/70 mb-4">Total Profile Views</div>
-            <img 
-              src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ftarek-hassan024.github.io%2Fmthassan&count_bg=%230EA5E9&title_bg=%230F172A&icon=&icon_color=%23E7E7E7&title=VISITORS&edge_flat=true" 
-              alt="Visitor Counter" 
-              className="rounded-md"
-            />
+            <div className="text-sm font-semibold text-white/70 mb-4">Homepage Visitors</div>
+            <VisitorCounter />
           </Card>
 
           {/* Normal Calendar */}

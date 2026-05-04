@@ -1,33 +1,79 @@
 ---
 title: "5. mmWave and Terahertz ISAC Perspective"
-date: "2024-02-05"
+date: "2023-10-18"
 order: 5
-excerpt: "Why the massive bandwidths of mmWave and THz frequencies are the ultimate enablers of ISAC."
+excerpt: "Why mmWave and THz frequencies are central to high-resolution ISAC, and what challenges they introduce."
 ---
 
-## Why High Frequencies are Crucial for ISAC
+## Why High Frequency Helps Sensing
 
-Integrated Sensing and Communication only truly shines when it is pushed into the extremely high-frequency bands, specifically **Millimeter-Wave (mmWave: 30-300 GHz)** and **Terahertz (THz: 300 GHz - 3 THz)**. 
+mmWave and THz systems provide large bandwidth and small wavelength. These properties are useful for sensing:
 
-### 1. Massive Bandwidth for Resolution
-In radar sensing, the ability to distinguish between two objects that are very close together (Range Resolution) is entirely dependent on the **bandwidth** of the signal. 
-- Traditional Wi-Fi (2.4 GHz) has low bandwidth, meaning its radar resolution is blurry (it can only tell an object is within a 2-meter radius).
-- mmWave and THz networks have massive, gigahertz-wide bandwidths. This allows an ISAC system to achieve **centimeter or millimeter-level resolution**, creating incredibly sharp, highly detailed 3D point-cloud maps of the environment.
+- Large bandwidth improves range resolution.
+- Small wavelength improves sensitivity to small movements.
+- Compact arrays provide high angular resolution.
+- Narrow beams reduce some interference.
 
-![mmWave ISAC](/images/isac/5.png)
-*Figure 5: An extremely focused mmWave ISAC beam reflecting off a metallic object to generate a high-resolution 3D point cloud.*
+```text
+range resolution is roughly proportional to 1 / bandwidth
+```
 
-### 2. Tiny Wavelengths for Antenna Miniaturization
-At THz frequencies, the wavelength is less than a millimeter. This allows engineers to pack hundreds of tiny antennas into a chip the size of a postage stamp. 
-These massive antenna arrays (Massive MIMO) generate extremely narrow "pencil beams." While these beams are great for sending high-speed communication data securely, they act exactly like a high-precision laser radar (LiDAR), scanning the environment with pinpoint accuracy.
+So wider bandwidth generally means sharper distance separation between targets.
 
----
+## Why High Frequency is Difficult
 
-## Overcoming the Fragility of THz
-As discussed in the RIS sections, mmWave and THz signals are highly fragile and easily blocked by obstacles. 
+High-frequency links are fragile:
 
-This creates an interesting duality in ISAC:
-- **The Bad:** The communication link easily drops if a person walks in front of the transmitter.
-- **The Good:** Because the signal is so sensitive to blockages, the sensing system instantly detects the person with incredible precision!
+- Blockage is severe.
+- Penetration through walls is poor.
+- Beam alignment is critical.
+- Hardware impairments are more significant.
+- Phase noise and synchronization matter.
 
-ISAC turns the greatest weakness of mmWave/THz (fragility) into its greatest strength (hyper-sensitive environmental mapping).
+ISAC must therefore combine high-resolution sensing with robust communication control.
+
+## mmWave ISAC
+
+mmWave is a practical near-term ISAC band because 5G/6G systems already use mmWave-style beamforming. The same arrays used for directional communication can support radar-like sensing.
+
+Use cases:
+
+- Vehicle tracking.
+- Indoor positioning.
+- Gesture recognition.
+- Beam prediction.
+- Factory monitoring.
+
+## THz ISAC
+
+THz frequencies can offer even larger bandwidth and finer sensing resolution. They are promising for extremely high data rates and high-resolution imaging-like sensing.
+
+Challenges:
+
+- Very high path loss.
+- Molecular absorption.
+- Hardware limitations.
+- Short-range deployment.
+- Severe blockage.
+
+## Role of RIS
+
+RIS becomes especially important at mmWave/THz because blockage is the central weakness. A RIS can provide an alternate path and can help illuminate targets that are not visible through the direct path.
+
+<div className="my-5 rounded-xl border border-white/10 bg-slate-900 p-4 text-sm">
+  <div className="mb-3 font-semibold text-cyan-200">High-frequency ISAC trade-off</div>
+  <div className="grid gap-3 sm:grid-cols-2">
+    <div className="rounded-lg bg-emerald-400/10 p-3">Large bandwidth -> high sensing resolution</div>
+    <div className="rounded-lg bg-rose-400/10 p-3">High blockage -> need RIS/beam control</div>
+  </div>
+</div>
+
+## Takeaway
+
+mmWave and THz frequencies are natural for ISAC because they provide high-resolution sensing and high-rate communication. Their weakness is fragility, which makes beam management, RIS assistance, and robust tracking essential.
+
+## References and Further Reading
+
+- F. Liu et al., ["Integrated Sensing and Communications"](https://doi.org/10.1109/JSAC.2022.3156632), *IEEE JSAC*, 2022.
+- J. A. Zhang et al., ["An Overview of Signal Processing Techniques for Joint Communication and Radar Sensing"](https://doi.org/10.1109/JSTSP.2021.3113120), *IEEE JSTSP*, 2021.
+- X. Mu et al., ["Reconfigurable Intelligent Surface-Aided Near-Field Communications for 6G"](https://ieeexplore.ieee.org/document/10380596), *IEEE Vehicular Technology Magazine*, 2024.

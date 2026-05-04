@@ -1,43 +1,82 @@
 ---
-title: "6. RIS-Aided 6G mmWave Networks"
-date: "2024-01-06"
+title: "6. RIS in 6G mmWave Networks"
+date: "2023-10-13"
 order: 6
-excerpt: "The future architecture of 6G networks powered by pervasive RIS and mmWave technologies."
+excerpt: "A 6G-oriented view of RIS in mmWave/sub-THz networks, including deployment, AI control, digital twins, and open research directions."
 ---
 
-## The Vision for 6G
+## RIS as 6G Infrastructure
 
-While 5G introduced mmWave to the world, 6G aims to make it ubiquitous alongside Terahertz (THz) communications. The ultimate goal of 6G is the **Integration of Sensing and Communication (ISAC)**—meaning the cellular network doesn't just transmit data; it simultaneously acts as a massive radar system mapping the physical world in real-time.
+6G is expected to move beyond only connecting users. It will also localize, sense, compute, and adapt. RIS fits this vision because it lets the network program parts of the physical environment.
 
-Reconfigurable Intelligent Surfaces are considered a foundational pillar to make this 6G vision a reality.
+In a mature 6G deployment, RIS panels may be installed on:
 
----
+- Building facades.
+- Street furniture.
+- Factory walls.
+- Indoor ceilings.
+- Vehicles and UAVs.
+- Smart windows.
 
-## Network Architecture: Pervasive RIS Deployment
+## Network-Level View
 
-In a true 6G mmWave/THz network, RIS will not be an isolated technology. It will be deployed pervasively across the urban environment.
-
-![6G Smart City](/images/ris/6.png)
-*Figure 6: A futuristic 6G smart city utilizing ubiquitous RIS panels to bounce signals between autonomous drones and vehicles.*
-
-1. **Macro-RIS:** Large panels mounted on building facades to bypass urban blockages and provide long-range mmWave coverage to vehicles.
-2. **Micro-RIS:** "Smart wallpapers" inside offices to ensure uniform mmWave coverage across cubicles and hallways.
-3. **Mobile-RIS:** RIS panels attached to drones (UAVs) or vehicles, dynamically moving to provide temporary coverage hotspots in disaster zones or stadiums.
-
----
-
-## Machine Learning Integration in 6G RIS
-
-Operating a network with millions of controllable RIS elements is mathematically impossible using traditional optimization techniques. 
-
-This is where the concepts of **Machine Learning** merge with **RIS-aided networks**:
-- **Deep Reinforcement Learning (DRL):** Used to continuously train the RIS controller to find the optimal phase shifts in a highly dynamic environment (e.g., tracking a fast-moving car).
-- **Federated Learning:** Base stations and user devices collaboratively train models to predict channel blockages and proactively adjust the RIS panels before a signal drops.
-
-<div className="bg-slate-900 p-4 rounded-lg my-4 font-mono text-sm border border-slate-700 text-center text-cyan-300">
-  [6G Core] ➡️ [AI/ML Optimization Engine] ➡️ [Controls 10,000+ RIS Panels] ➡️ [Ubiquitous mmWave Coverage]
+<div className="my-5 rounded-xl border border-white/10 bg-slate-900 p-4 text-sm">
+  <div className="mb-3 font-semibold text-cyan-200">6G RIS control loop</div>
+  <div className="grid gap-3 md:grid-cols-4">
+    <div className="rounded-lg bg-cyan-400/10 p-3">Sense channel/context</div>
+    <div className="rounded-lg bg-fuchsia-400/10 p-3">Optimize RIS states</div>
+    <div className="rounded-lg bg-emerald-400/10 p-3">Serve users/targets</div>
+    <div className="rounded-lg bg-amber-400/10 p-3">Learn from feedback</div>
+  </div>
 </div>
 
-## Summary
+RIS control is not only an electromagnetic problem. It is also a network-management problem involving scheduling, mobility, control signaling, and AI.
 
-The marriage of **mmWave/THz frequencies** (for bandwidth) and **Reconfigurable Intelligent Surfaces** (for channel control) represents the cornerstone of next-generation wireless systems. It transitions the wireless environment from a frustrating obstacle into an intelligent, programmable partner.
+## Why mmWave and sub-THz Need RIS
+
+mmWave/sub-THz systems offer large bandwidth, but links are easily blocked. RIS helps by:
+
+- Creating reflected backup paths.
+- Improving cell-edge coverage.
+- Supporting directional beam discovery.
+- Helping localization and sensing.
+- Reducing the need for many active small cells.
+
+## AI and Digital Twins
+
+Large RIS networks cannot be optimized by slow exhaustive search. AI can help learn:
+
+- Which RIS panels should be active.
+- Which phase patterns work in a given environment.
+- How mobility affects the best configuration.
+- How sensing information predicts future beams.
+
+Digital twins can provide simulated environments for training and planning. The digital twin stores geometry, materials, RIS locations, and traffic patterns, then predicts good radio configurations.
+
+## Deployment Challenges
+
+- **Backhaul/control:** RIS controllers need reliable commands.
+- **Calibration:** Real RIS responses differ from ideal models.
+- **Standardization:** RIS needs interfaces for control, measurement, and reporting.
+- **Maintenance:** Outdoor surfaces face weather, aging, and hardware failures.
+- **Security:** Malicious RIS control could redirect or jam links.
+
+## Research Directions
+
+- Multi-RIS coordination.
+- Active/STAR/multifunctional RIS.
+- Near-field RIS for 6G.
+- RIS-aided ISAC.
+- Learning-based RIS beam management.
+- Hardware-aware channel modeling.
+- Experimental validation with real prototypes.
+
+## Takeaway
+
+RIS can become a 6G infrastructure layer that makes wireless environments programmable. The key challenge is moving from ideal single-link simulations to robust, hardware-aware, network-level deployments.
+
+## References and Further Reading
+
+- Q. Wu and R. Zhang, ["Towards Smart and Reconfigurable Environment"](https://doi.org/10.1109/MCOM.001.1900107), *IEEE Communications Magazine*, 2020.
+- M. Di Renzo et al., ["Smart Radio Environments Empowered by Reconfigurable Intelligent Surfaces"](https://doi.org/10.1109/JSAC.2020.3007211), *IEEE JSAC*, 2020.
+- A. Tishchenko et al., ["The Emergence of Multi-Functional and Hybrid Reconfigurable Intelligent Surfaces for Integrated Sensing and Communications: A Survey"](https://doi.org/10.1109/COMST.2024.3519785), *IEEE Communications Surveys & Tutorials*, early access, 2025.

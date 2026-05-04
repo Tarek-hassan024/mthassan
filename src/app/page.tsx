@@ -599,7 +599,7 @@ export default function HomePage() {
           <Card className="col-span-1 flex flex-col items-center justify-center p-6 text-center">
             <div className="text-sm font-semibold text-white/70 mb-4">Total Profile Views</div>
             <img 
-              src="https://komarev.com/ghpvc/?username=Tarek-hassan024&label=VISITORS&color=0ea5e9&style=for-the-badge" 
+              src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ftarek-hassan024.github.io%2Fmthassan&count_bg=%230EA5E9&title_bg=%230F172A&icon=&icon_color=%23E7E7E7&title=VISITORS&edge_flat=true" 
               alt="Visitor Counter" 
               className="rounded-md"
             />

@@ -27,7 +27,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  // ESC চাপলে menu close
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -37,10 +36,9 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur relative">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="group inline-flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-gradient-to-r from-fuchsia-400 to-cyan-300" />
           <span className="text-sm font-semibold tracking-wide text-white/90 group-hover:text-white">
             Tarek Hassan
           </span>
@@ -100,10 +98,10 @@ export default function Navbar() {
       {open ? (
         <div
           id="mobile-nav"
-          className="md:hidden border-t border-white/10 bg-slate-950/90 backdrop-blur"
+          className="md:hidden border-t border-white/10 bg-slate-950/95 shadow-2xl shadow-black/30 backdrop-blur"
         >
-          <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
-            <div className="grid gap-1">
+          <div className="mx-auto max-h-[calc(100vh-64px)] max-w-6xl overflow-y-auto px-4 py-3 sm:px-6">
+            <div className="grid gap-1.5">
               {NAV.map((item) => {
                 const active = isActive(pathname, item.href);
                 return (
@@ -124,7 +122,7 @@ export default function Navbar() {
               })}
 
               <a
-                href="/cv.pdf"
+                href={`${BASE_PATH}/cv.pdf`}
                 onClick={() => setOpen(false)}
                 className="mt-2 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-cyan-300 px-4 py-3 text-sm font-semibold text-slate-950 hover:opacity-90 transition"
               >

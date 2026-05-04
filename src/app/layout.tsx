@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <ScrollProgress />
         <Navbar />
-        <main className="pb-10">{children}</main>
+        <main className="pt-16 pb-10">{children}</main>
         <Footer />
       </body>
     </html>

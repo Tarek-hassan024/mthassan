@@ -54,7 +54,9 @@ export const cv = {
       bullets: [
         "Intelligent AI Electromagnetic Environment for Communication and Sensing within 6G",
         "Reconfigurable Intelligence Surface (RIS)",
-        "Integrated Sensing and Communication (ISAC)"
+        "Integrated Sensing and Communication (ISAC)",
+        "Machine Learning-Driven Localization",
+        "RIS-Assisted Localization"
       ],
       technical_skills: [
         "6G",
@@ -73,8 +75,13 @@ export const cv = {
       location: "Belfast, Northern Ireland, UK",
       period: "Sep 2025 — Present",
       bullets: [
-        "Lab Demonstration (M.Sc.): Software Assurance (Cyber Security), Introduction to Embedded Systems (Software Engineering)",
-        "Lab Demonstration (Undergrad): Electronics and Circuits (EEE), Fundamentals of Electric Circuits (EEE), Deep Learning (Computer Science)",
+        "Lab Demonstration (M.Sc.):",
+        "• Software Assurance (Cyber Security)",
+        "• Introduction to Embedded Systems (Software Engineering)",
+        "Lab Demonstration (Undergrad):",
+        "• Electronics and Circuits (EEE)",
+        "• Fundamentals of Electric Circuits (EEE)",
+        "• Deep Learning (Computer Science)",
       ],
       technical_skills: [
         "Software Assurance",

@@ -11,6 +11,7 @@ const NAV = [
   { href: "/education", label: "Education" },
   { href: "/research", label: "Research" },
   { href: "/skills", label: "Skills" },
+  { href: "/knowledge", label: "Knowledge" },
   { href: "/teaching", label: "Teaching" },
   { href: "/publications", label: "Publications" },
   { href: "/photos", label: "Photos" },

@@ -17,6 +17,7 @@ import Link from "next/link";
 import type { ElementType } from "react";
 import Card from "@/components/Card";
 import Container from "@/components/Container";
+import AnimatedCounter from "@/components/AnimatedCounter";
 import { cv } from "@/data/cv";
 import { education } from "@/data/education";
 import { publications } from "@/data/publications";
@@ -69,10 +70,10 @@ const grantsAndScholarships = [
   {
     title: "Travel Grants",
     items: [
-      "Telco Renata Travel Grant (CTTC, Barcelona, Spain)",
+      "Telco Renata Travel Grant 2024 (CTTC, Barcelona, Spain)",
       "International Conference on Computer and Information Technology (ICCIT) 2024, 2023, 2022",
       "2024 IEEE International Conference on Communication, Computing and Signal Processing (IICCCS), Asansol, India",
-      "EICT 2023 at KUET, Khulna",
+      "International Conference on Electrical, Information and Communication Technology (EICT) 2023 at KUET, Khulna",
     ],
   },
   {
@@ -147,9 +148,11 @@ function SectionHeading({
 
 function StatCard({ label, value }: { label: string; value: number | string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-      <div className="text-xs text-white/55">{label}</div>
-      <div className="mt-1 text-2xl font-semibold text-white">{value}</div>
+    <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+      <div className="text-[10px] uppercase tracking-wider text-white/55">{label}</div>
+      <div className="text-xl font-semibold text-white">
+        {typeof value === "number" ? <AnimatedCounter end={value} /> : value}
+      </div>
     </div>
   );
 }
@@ -178,6 +181,15 @@ export default function AcademicProfileContent({ badge = "Academic Portfolio" }:
     .sort((a, b) => (b.year ?? 0) - (a.year ?? 0))
     .slice(0, 5);
 
+  const teachingStartDate = new Date(2021, 11, 1); // Dec 2021
+  const today = new Date();
+  let teachingYears = today.getFullYear() - teachingStartDate.getFullYear();
+  let teachingMonths = today.getMonth() - teachingStartDate.getMonth();
+  if (teachingMonths < 0) {
+    teachingYears--;
+    teachingMonths += 12;
+  }
+
   return (
     <Container className="pt-10">
       <section className="grid gap-6 lg:grid-cols-[1fr_340px]">
@@ -194,10 +206,7 @@ export default function AcademicProfileContent({ badge = "Academic Portfolio" }:
           <p className="mt-1 text-sm text-white/55">{site.location}</p>
 
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/80">
-            PhD researcher at Queen&apos;s University Belfast working on intelligent AI electromagnetic
-            environments for communication and sensing within 6G. His research connects RIS-assisted
-            localization, mmWave systems, ISAC, machine learning, and simulation-backed wireless network
-            design, with prior academic service as a Lecturer in ETE at RUET.
+            Md Tarek Hassan is a Doctoral Researcher pursuing a <strong className="font-semibold text-white">PhD</strong> in Electrical and Electronic Engineering at Queen&apos;s University Belfast. Previously, he served as a <strong className="font-semibold text-white">Lecturer</strong> in the Department of Electronics and Telecommunication Engineering (<strong className="font-semibold text-white">ETE</strong>) at Rajshahi University of Engineering and Technology (<strong className="font-semibold text-white">RUET</strong>). He holds both <strong className="font-semibold text-white">B.Sc.</strong> and <strong className="font-semibold text-white">M.Sc.</strong> degrees with First Class Honors (<strong className="font-semibold text-white">1st Position/Distinction</strong>) from <strong className="font-semibold text-white">RUET</strong>. His research focuses on intelligent AI electromagnetic environments for communication and sensing within 6G, with an emphasis on RIS-assisted localization, mmWave networks, ISAC, and learning-driven wireless system design.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
@@ -252,10 +261,29 @@ export default function AcademicProfileContent({ badge = "Academic Portfolio" }:
               </a>
             </div>
           </div>
-          <div className="mt-6 grid grid-cols-3 gap-2">
-            <StatCard label="Published" value={published.length} />
-            <StatCard label="Accepted" value={accepted.length} />
-            <StatCard label="Submitted" value={submitted.length} />
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            {/* Column 1: Publications */}
+            <div className="flex flex-col gap-1.5">
+              <div className="text-[10px] font-semibold text-white/55 uppercase tracking-wider">Publications Summary</div>
+              <StatCard label="Published" value={published.length} />
+              <StatCard label="Accepted" value={accepted.length} />
+              <StatCard label="Submitted" value={submitted.length} />
+            </div>
+
+            {/* Column 2: Teaching Experience */}
+            <div className="flex flex-col gap-1.5">
+              <div className="text-[10px] font-semibold text-white/55 uppercase tracking-wider">Teaching Experience</div>
+              <div className="flex flex-1 flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 p-3 text-center">
+                <div className="flex items-baseline gap-1 text-2xl font-semibold text-white">
+                  <AnimatedCounter end={teachingYears} />
+                  <span className="text-[10px] font-normal text-white/55 uppercase tracking-wider">Years</span>
+                </div>
+                <div className="flex items-baseline gap-1 text-2xl font-semibold text-white">
+                  <AnimatedCounter end={teachingMonths} />
+                  <span className="text-[10px] font-normal text-white/55 uppercase tracking-wider">Months</span>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4">
             <div className="text-xs text-white/55">RUET Status</div>
